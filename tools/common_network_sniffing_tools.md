@@ -47,3 +47,8 @@ bettercap is the Swiss army knife for network attacks and monitoring.
 
 NetworkMiner is an open source Network Forensic Analysis Tool (NFAT) for Windows (but also works in Linux / Mac OS X / FreeBSD). NetworkMiner can be used as a passive network sniffer/packet capturing tool in order to detect operating systems, sessions, hostnames, open ports etc. without putting any traffic on the network. NetworkMiner can also parse PCAP files for off-line analysis and to regenerate/reassemble transmitted files and certificates from PCAP files.
 [Source: NetworkMiner](https://www.netresec.com/index.ashx?page=NetworkMiner)
+
+
+---
+[Tools](/tools/tools_readme.md) [HOME Page](/README.md)
+---
