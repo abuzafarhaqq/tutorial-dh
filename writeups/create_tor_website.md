@@ -16,21 +16,28 @@ Tor protects you by bouncing your communications around a distributed network of
 Personally, when I need a simple Tor Website I use a VM or a physical machine with a live booted a Linux based OS (in general the Ubuntu 20.04). This tutorial is actually for Ubuntu 20.04 in virtual box and feel free to change it to your needs.
 
 **Step 1:** VM and Network Interface
+
 - Make a fresh new VM.
 - Configure interface in bridged mode.
 - Boot Ubuntu 16.04 live ISO.
 - Do not install Ubuntu and choose “Try Ubuntu”
-**Step 2:** Install Nginx
-- ```bash
+
+**Step 2:** Install Nginx:
+
+```
 sudo apt install nginx
 ```
-- ```bash
+
+```
 sudo rm /etc/nginx/sites-available/default
 ```
-- ```bash
+
+```
 sudo nano /etc/nginx/sites-available/default
 ```
+
 and Add the followings to the new `/etc/nginx/sites-available/default` and save:
+
 ```
 server {
        listen 127.0.0.1:8080 default_server;
@@ -45,47 +52,55 @@ server {
 ```
 
 **Step 3:** Install Tor for the website
-- ```bash
+```
 sudo nano /etc/apt/sources.list
 ```
-- Append and save: ```deb http://deb.torproject.org/torproject.org xenial main```
-- Go to [Tor Projects](https://www.torproject.org/docs/debian.html.en) and retrive the followings:
-```bash
+
+Append and save: ```deb http://deb.torproject.org/torproject.org xenial main```
+
+Go to [Tor Projects](https://www.torproject.org/docs/debian.html.en) and retrive the followings:
+
+```
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 ```
 
-- Proceed with the instalation:
-```bash
+Proceed with the instalation:
+```
 sudo apt update
 sudo apt install tor deb.torproject.org-keyring
 ```
 
-- Proceed with the configuration:
-```bash
+Proceed with the configuration:
+
+```
 sudo nano /etc/tor/torrc
 ```
 
-- Replace:
+Replace:
+
 ```
-#HiddenServiceDir /var/lib/tor/hidden_service/#
-#HiddenServicePort 80 127.0.0.1:80
+# HiddenServiceDir /var/lib/tor/hidden_service/
+# HiddenServicePort 80 127.0.0.1:80
 ```
 
-- With:
+With:
+
 ```
 HiddenServiceDir /var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:8080
 ```
 
 **Step 4:** Fire it up!
-```bash
+
+```
 sudo service nginx restart
 sudo service tor restart
 ```
 
 **To retrive the website .onion link:**
-```bash
+
+```
 cat /var/lib/tor/hidden_service/hostname
 ```
 
