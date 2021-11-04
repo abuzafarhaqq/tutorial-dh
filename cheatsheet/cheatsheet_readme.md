@@ -8,6 +8,7 @@ Cheat Sheet List
 
 ### Offensive Security
 
+- [Metasploit Framework Cheat Sheet](/cheatsheet/offensive_security/metasploit_cheatsheet.md)
 - [msfvenom Cheat Sheet](/cheatsheet/offensive_security/msfvenom/msfvenom_cheat_sheet.md)
 
 ### Shell
