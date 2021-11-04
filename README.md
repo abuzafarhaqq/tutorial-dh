@@ -5,6 +5,8 @@
 - [Cheat Sheet](/cheatsheet/cheatsheet_readme.md)
 - [Tools](/tools/tools_readme.md)
 - [Write Ups](/writeups/writeups_readme.md)
+- [Sniffing](/sniffing/sniffing_readme.md)
+- [Wordpress](/wordpress/wordpress_readme.md)
 
 **Rules:**
 
